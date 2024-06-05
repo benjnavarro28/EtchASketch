@@ -1,8 +1,12 @@
 const mainContainer = document.getElementById('container');
 let rows = 16;
 let columns = 16;
-mainContainer.style.width = '600px';
-mainContainer.style.height = '600px';
+let newGridBtn = document.getElementById('newgrid');
+let newGridSize;
+newGridBtn.addEventListener('click', newGrid);
+const gridAreaSize = 500;
+mainContainer.style.width = `${gridAreaSize}px`;
+mainContainer.style.height = `${gridAreaSize}px`;
 
 function changeSquareColor() {
     this.style.backgroundColor = 'black';
@@ -11,10 +15,25 @@ function changeSquareColor() {
 function makeGrid() {
     for (let i = 0; i < rows * columns; i++) {
         const square = document.createElement('div');
-        square.style.cssText = "border: 1px solid black; height: 24px; width: 24px";
+        const squareHeightWidth = gridAreaSize / rows;
+        square.style.cssText = `border: 1px solid black; height: ${squareHeightWidth}px; width: ${squareHeightWidth}px`;
         square.classList.add('grid-square');
         mainContainer.appendChild(square);
         square.addEventListener("mouseover", changeSquareColor);
+    }
+}
+
+function newGrid() {
+    newGridSize = prompt("Enter a number between 1 and 100.");
+    if (newGridSize <= 100 && newGridSize >= 1) {
+        rows = newGridSize;
+        columns = newGridSize;
+        while (mainContainer.hasChildNodes()) {
+            mainContainer.removeChild(mainContainer.firstChild); //Remove the existing grid before creating a new one.
+        }
+        makeGrid();
+    } else {
+        console.log("Invalid option");
     }
 }
 

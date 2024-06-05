@@ -2,7 +2,10 @@
     display: flex;
     flex-wrap: wrap;
     margin: 100px auto;
-    max-width: 410px;
-    max-height: 410px;
     padding: 0px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
 }
