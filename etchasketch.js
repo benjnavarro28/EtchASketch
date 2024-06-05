@@ -15,8 +15,9 @@ function changeSquareColor() {
 function makeGrid() {
     for (let i = 0; i < rows * columns; i++) {
         const square = document.createElement('div');
-        const squareHeightWidth = gridAreaSize / rows;
-        square.style.cssText = `border: 1px solid black; height: ${squareHeightWidth}px; width: ${squareHeightWidth}px`;
+        const squareHeight = gridAreaSize / columns;
+        const squareWidth = gridAreaSize / rows;
+        square.style.cssText = `border: 2px solid black; height: ${squareHeight - 4}px; width: ${squareWidth - 4}px`;
         square.classList.add('grid-square');
         mainContainer.appendChild(square);
         square.addEventListener("mouseover", changeSquareColor);
